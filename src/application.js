@@ -49,9 +49,19 @@ const render = (container, watchedState, i18nInstance) => {
   container.append(lngToggler, counter, reset);
 };
 
-export default async (container, initialState = {}) => {
+export default async (container, { lng = 'en', clicksCount = 0 } = {}) => {
   // BEGIN (write your solution here)
+  const state = {
+    lng,
+    clicksCount,
+  };
 
+  const i18nInstance = i18n.createInstance();
+
+  await i18nInstance.init({
+    lng,
+    resources,
+  });
   // END
 
   const watchedState = onChange(state, (path, value) => {
